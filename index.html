@@ -16,6 +16,7 @@
                     });
             }
         }" x-init="getData">
+        <button type="button" @click="getData">Refresh leaderboard</button>
         <ol>
             <template x-for="rider in responsedata">
                     <li>
@@ -70,7 +71,7 @@
                 <input type="text" x-model="riderland" placeholder="Geef rider land">
                 <input type="text" x-model="riderploeg" placeholder="Geef rider ploeg">
                 <input type="text" x-model="riderpunten" placeholder="Geef rider punten">
-                <button x-on:click="addRider, getData">Voeg rider toe</button>
+                <button x-on:click="addRider">Voeg rider toe</button>
             </div>
     </body>
 </html>
