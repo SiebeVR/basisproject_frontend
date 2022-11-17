@@ -26,5 +26,27 @@
             </template>
         </ol>
         </div>
+        <div x-data="{
+            riderid: '',
+            responsedata: [],
+            async getRider() {
+                fetch('https://main-service-siebevr.cloud.okteto.net/rider/' +  this.riderid)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.responsedata = data;
+                        console.log('responsedata:', this.responsedata);
+                    });
+            }
+        }">
+        <input type="text" x-model="riderid" placeholder="Search on rider ID">
+        <button type="button" @click="getRider()">Search</button>
+        <ul>
+            <template x-for="i in responsedata">
+                    <li>
+                        <span x-text="i"></span>
+                    </li>
+            </template>
+        </ul>
+        </div>
     </body>
 </html>
