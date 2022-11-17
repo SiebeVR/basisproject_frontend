@@ -48,5 +48,29 @@
             </template>
         </ul>
         </div>
+        <div>
+            <p>Voeg een rider toe</p>
+            <div x-data="{
+                responsedata: null,
+                riderid: '',
+                ridernaam: '',
+                riderleeftijd: '',
+                riderland: '',
+                riderploeg: '',
+                riderpunten: '',
+                async addRider() {
+                    this.responsedata = await (await fetch('https://main-service-siebevr.cloud.okteto.net/addrider/?riderid=' + this.riderid + '&ridernaam=' + this.ridernaam + '&riderleeftijd=' + this.riderleeftijd + '&riderland=' + this.riderland + '&riderploeg=' + this.riderploeg + '&riderpunten=' + this.riderpunten, {
+                    method: 'POST',
+                    })).json();
+                },
+                }">
+                <input type="text" x-model="riderid" placeholder="Geef rider ID">
+                <input type="text" x-model="ridernaam" placeholder="Geef rider naam">
+                <input type="text" x-model="riderleeftijd" placeholder="Geef rider leeftijd">
+                <input type="text" x-model="riderland" placeholder="Geef rider land">
+                <input type="text" x-model="riderploeg" placeholder="Geef rider ploeg">
+                <input type="text" x-model="riderpunten" placeholder="Geef rider punten">
+                <button x-on:click="addRider">Voeg rider toe</button>
+            </div>
     </body>
 </html>
